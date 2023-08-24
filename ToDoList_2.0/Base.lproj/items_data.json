@@ -1,0 +1,15 @@
+[  {
+    "id": "1",
+    "text": "Todo 1",
+    "importance": "high",
+    "deadline": null,
+    "isCompleted": false
+  },
+  {
+    "id": "2",
+    "text": "Todo 2",
+    "importance": "low",
+    "deadline": null,
+    "isCompleted": true
+  }
+]
