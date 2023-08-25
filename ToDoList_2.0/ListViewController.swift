@@ -111,7 +111,7 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
         }
     }
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt
-                   indexPath: IndexPath)-> UISwipeActionsConfiguration?{
+                   indexPath: IndexPath)-> UISwipeActionsConfiguration? {
         let editAction = UIContextualAction(style: .normal, title: "Edit") { (_, _, completionHandler) in
             completionHandler(true)
             let secondViewController = ViewController()
@@ -139,8 +139,8 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
         editAction.backgroundColor = .gray
         editAction.image = UIImage(systemName: "info.circle.fill")
 
-        let deleteAction = UIContextualAction(style: .destructive, title: "Delete")
-        { [self] (_, _, completionHandler) in
+        let deleteAction = UIContextualAction(style: .destructive, title: "Delete") {
+            [self] (_, _, completionHandler) in
                 completionHandler(true)
                 removeItem(at: indexPath.row)
                 tableView.deleteRows(at: [indexPath], with: .fade)
@@ -160,7 +160,8 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
         tableView.reloadData()
 
     }
-    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+    func tableView(_ tableView: UITableView,
+                   editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
         if tableView.isEditing {
             return .none
         } else {

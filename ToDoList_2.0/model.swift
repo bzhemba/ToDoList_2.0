@@ -11,7 +11,8 @@ struct TodoItem: Codable {
     let importance: Importance
     let deadline: String?
     var isCompleted: Bool
-    init(id: String = UUID().uuidString, text: String = "", deadline: String? = nil, importance: Importance, isCompleted: Bool = false) {
+    init(id: String = UUID().uuidString, text: String = "", deadline: String? = nil,
+         importance: Importance, isCompleted: Bool = false) {
         self.id = id
         self.text = text
         self.deadline = deadline

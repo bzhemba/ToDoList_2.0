@@ -9,11 +9,11 @@ import Foundation
 import UIKit
 
 class TableView: UITableView, UITableViewDataSource, UITableViewDelegate {
+    let cellIdentifier = "TableCell"
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 2
     }
-    
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let tableView = UITableView()
         let cellIdentifier = "TableCell"
@@ -24,13 +24,9 @@ class TableView: UITableView, UITableViewDataSource, UITableViewDelegate {
         let segmentedControl = UISegmentedControl(items: ["💤", "⏳", "⌛️"])
         segmentedControl.selectedSegmentIndex = 0
         cell.accessoryView = indexPath.row == 0 ? segmentedControl : deadlineSwitch
-                
         return cell
     }
-    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 61
     }
 }
-
-

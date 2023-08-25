@@ -27,6 +27,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         cell.selectionStyle = .none
         cell.textLabel?.text = indexPath.row == 0 ? "Importance" : "Deadline"
         segmentedControl.selectedSegmentIndex = selectedSegmentInd
+        deadlineSwitch.onTintColor = .yellow
         cell.accessoryView = indexPath.row == 0 ? segmentedControl : deadlineSwitch
         segmentedControl.addTarget(self, action: #selector(segmentedControlValueChanged(_:)), for: .valueChanged)
             return cell
@@ -35,7 +36,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         @objc func segmentedControlValueChanged(_ sender: UISegmentedControl) {
             selectedSegmentInd = sender.selectedSegmentIndex
         }
-    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 61
     }
@@ -82,7 +82,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         saveButton.addTarget(self, action: #selector(saveAction), for: .touchUpInside)
         deleteButton.addTarget(self, action: #selector(deleteAct), for: .touchUpInside)
     }
-    @objc func switchAction(sender: UISwitch){
+    @objc func switchAction(sender: UISwitch) {
         let decelerationDistance: CGFloat = 331
         if sender.isOn {
             calendarView.alpha = 1
@@ -179,24 +179,21 @@ private extension ViewController {
             cancelButton.setTitle("Cancel", for: .normal)
             let myColor = UIColor(red: 181/255, green: 204/255, blue: 240/255, alpha: 1.0)
             cancelButton.setTitleColor(myColor, for: .normal)
-            
             NSLayoutConstraint.activate([
-                cancelButton.topAnchor.constraint (equalTo: view.safeAreaLayoutGuide.topAnchor,
+                cancelButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor,
                                                    constant: 1),
                 cancelButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor,
-                                                   constant: 16),
+                                                   constant: 16)
             ])
-            
             saveButton.translatesAutoresizingMaskIntoConstraints = false
             saveButton.setTitle("Save", for: .normal)
             saveButton.setTitleColor(myColor, for: .normal)
             NSLayoutConstraint.activate([
-                saveButton.topAnchor.constraint (equalTo: view.safeAreaLayoutGuide.topAnchor,
+                saveButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor,
                                                  constant: 1),
                 saveButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor,
-                                                   constant: -16),
+                                                   constant: -16)
             ])
-            
             components.calendar = calendar
             components.year = 0
             components.month = 0
@@ -206,18 +203,19 @@ private extension ViewController {
 
             calendarView.minimumDate = minDate
             calendarView.calendar = .current
+            calendarView.tintColor = myColor
             calendarView.locale = .current
             calendarView.datePickerMode = .date
             calendarView.preferredDatePickerStyle = .inline
             calendarView.backgroundColor = .white
             calendarView.translatesAutoresizingMaskIntoConstraints = false
             NSLayoutConstraint.activate([
-            calendarView.topAnchor.constraint (equalTo: tableView.bottomAnchor, constant: -5),
-            calendarView.centerXAnchor.constraint(equalTo:view.centerXAnchor),
+            calendarView.topAnchor.constraint(equalTo: tableView.bottomAnchor, constant: -5),
+            calendarView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             calendarView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor,
                                                constant: 16)
             ])
-            dateLabel.textColor = .systemBlue
+            dateLabel.textColor = myColor
             dateLabel.font = UIFont(name: dateLabel.font.familyName, size: 10)
             dateLabel.translatesAutoresizingMaskIntoConstraints = false
             NSLayoutConstraint.activate([
@@ -243,21 +241,3 @@ private extension ViewController {
         }
 }
 
-extension UIImage {
-    func image(alpha: CGFloat) -> UIImage? {
-        UIGraphicsBeginImageContextWithOptions(size, false, scale)
-        draw(at: .zero, blendMode: .normal, alpha: alpha)
-        let newImage = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-        return newImage
-    }
-}
-
-extension NSTextAttachment {
-    func setImageHeight(height: CGFloat) {
-        guard let image = image else { return }
-        let ratio = image.size.width / image.size.height
-
-        bounds = CGRect(x: bounds.origin.x, y: bounds.origin.y, width: ratio * height, height: height)
-    }
-}
