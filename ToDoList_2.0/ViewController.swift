@@ -45,7 +45,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     let taskTextField = TaskTextField(placeholder: "What should be done?")
     let whiteView = UIView()
-    let tableView = TableView()
+    let tableView = UITableView()
     let cellIdentifier = "TableCell"
     let label = UILabel()
     let cancelButton = UIButton()
@@ -128,7 +128,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             delegate?.updateData()
             delegate?.updateLabelInc()
         } else if selectedButtonTap == 1 {
-            changeItem(at: changeInd, text: task, importance: imp, deadline: date)
+            changeItem(atInd: changeInd, text: task, importance: imp, deadline: date)
             delegate?.updateData()
         }
         dismiss(animated: true, completion: tableView.reloadData)
@@ -240,4 +240,3 @@ private extension ViewController {
             ])
         }
 }
-

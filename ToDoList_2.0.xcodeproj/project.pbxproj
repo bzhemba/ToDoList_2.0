@@ -15,7 +15,6 @@
 		913EC6B42A67335A00EE43C8 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 913EC6B32A67335A00EE43C8 /* SnapKit */; };
 		913EC6B82A688D2E00EE43C8 /* TaskTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913EC6B72A688D2E00EE43C8 /* TaskTextField.swift */; };
 		913EC6BA2A6B153800EE43C8 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913EC6B92A6B153800EE43C8 /* Extensions.swift */; };
-		913EC6BC2A6C7A0300EE43C8 /* CustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913EC6BB2A6C7A0300EE43C8 /* CustomCell.swift */; };
 		913EC6C02A754A4400EE43C8 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913EC6BF2A754A4400EE43C8 /* ListViewController.swift */; };
 		913EC6C32A83AA3D00EE43C8 /* items_data.json in Resources */ = {isa = PBXBuildFile; fileRef = 913EC6C52A83AA3D00EE43C8 /* items_data.json */; };
 		913EC6C82A83AAB500EE43C8 /* FileCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913EC6C72A83AAB500EE43C8 /* FileCache.swift */; };
@@ -41,7 +40,6 @@
 		913EC6902A6731D500EE43C8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		913EC6B72A688D2E00EE43C8 /* TaskTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskTextField.swift; sourceTree = "<group>"; };
 		913EC6B92A6B153800EE43C8 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
-		913EC6BB2A6C7A0300EE43C8 /* CustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCell.swift; sourceTree = "<group>"; };
 		913EC6BF2A754A4400EE43C8 /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
 		913EC6C42A83AA3D00EE43C8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.json; name = Base; path = Base.lproj/items_data.json; sourceTree = "<group>"; };
 		913EC6C62A83AA4800EE43C8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.json; name = en; path = en.lproj/items_data.json; sourceTree = "<group>"; };
@@ -90,7 +88,6 @@
 				913EC68D2A6731D500EE43C8 /* LaunchScreen.storyboard */,
 				913EC6902A6731D500EE43C8 /* Info.plist */,
 				913EC6B92A6B153800EE43C8 /* Extensions.swift */,
-				913EC6BB2A6C7A0300EE43C8 /* CustomCell.swift */,
 				913EC6BF2A754A4400EE43C8 /* ListViewController.swift */,
 				913EC6C52A83AA3D00EE43C8 /* items_data.json */,
 				913EC6C72A83AAB500EE43C8 /* FileCache.swift */,
@@ -232,7 +229,6 @@
 				913EC6BA2A6B153800EE43C8 /* Extensions.swift in Sources */,
 				915841CF2A952F730011F5E2 /* model.swift in Sources */,
 				913EC6C82A83AAB500EE43C8 /* FileCache.swift in Sources */,
-				913EC6BC2A6C7A0300EE43C8 /* CustomCell.swift in Sources */,
 				913EC6C02A754A4400EE43C8 /* ListViewController.swift in Sources */,
 				913EC6B82A688D2E00EE43C8 /* TaskTextField.swift in Sources */,
 			);

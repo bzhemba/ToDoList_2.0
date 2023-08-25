@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-protocol UpdateDataDelegate {
+protocol UpdateDataDelegate: AnyObject {
     func updateData()
     func updateLabelInc()
     func updateLabelDec()
@@ -36,7 +36,7 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         let cell = UITableViewCell(style: .subtitle, reuseIdentifier: "cell")
         let currentItem = fileCache.toDoList[indexPath.row]
-        if (currentItem.deadline != nil) {
+        if currentItem.deadline != nil {
             let calendarImage = UIImage(systemName: "calendar")
             let transparentImage = calendarImage?.image(alpha: 0.3)
             let attachment = NSTextAttachment()
@@ -51,7 +51,6 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
             attributedText.addAttribute(NSAttributedString.Key.baselineOffset, value: -11.0, range: range1)
             attributedText.addAttribute(NSAttributedString.Key.baselineOffset, value: -2.0, range: range2)
             cell.detailTextLabel?.attributedText = attributedText
-
             cell.detailTextLabel?.textColor = .systemGray4
         }
         if currentItem.importance == .high {
@@ -111,7 +110,7 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
         }
     }
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt
-                   indexPath: IndexPath)-> UISwipeActionsConfiguration? {
+                   indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let editAction = UIContextualAction(style: .normal, title: "Edit") { (_, _, completionHandler) in
             completionHandler(true)
             let secondViewController = ViewController()
@@ -139,8 +138,7 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
         editAction.backgroundColor = .gray
         editAction.image = UIImage(systemName: "info.circle.fill")
 
-        let deleteAction = UIContextualAction(style: .destructive, title: "Delete") {
-            [self] (_, _, completionHandler) in
+        let deleteAction = UIContextualAction(style: .destructive, title: "Delete") { [self](_, _, completionHandler) in
                 completionHandler(true)
                 removeItem(at: indexPath.row)
                 tableView.deleteRows(at: [indexPath], with: .fade)
@@ -155,8 +153,8 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
             return configuration
     }
 
-    func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-        moveItem(fromIndex: fromIndexPath.row, toIndex: to.row)
+    func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, moveRowto: IndexPath) {
+        moveItem(fromIndex: fromIndexPath.row, toIndex: moveRowto.row)
         tableView.reloadData()
 
     }
@@ -184,10 +182,8 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
         fileCache.loadFromFile(from: url) { [weak self] todoList in
                 guard let todoList = todoList else { return }
                 fileCache.toDoList = todoList
-                for todo in todoList {
-                    if !todo.isCompleted {
+                for todo in todoList where !todo.isCompleted {
                         countItems += 1
-                    }
                 }
                 self?.doneTitle.text = "left to do - \(countItems)"
                 self?.tableView.reloadData()
@@ -212,9 +208,9 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
     @objc func clearTable() {
         let alertController = UIAlertController(title: "Do you want to clear to do list?",
                                                 message: nil, preferredStyle: .alert)
-        let alertAction1 = UIAlertAction(title: "Cancel", style: .destructive) {(alert) in
+        let alertAction1 = UIAlertAction(title: "Cancel", style: .destructive) { _ in
         }
-        let alertAction2 = UIAlertAction(title: "Clear", style: .default) { (alert) in
+        let alertAction2 = UIAlertAction(title: "Clear", style: .default) { _ in
             fileCache.toDoList.removeAll()
             fileCache.saveToFile(to: url)
             countItems = 0

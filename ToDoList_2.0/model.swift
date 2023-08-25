@@ -44,9 +44,9 @@ func changeState(at item: Int) -> Bool {
     return fileCache.toDoList[item].isCompleted
 }
 
-func changeItem(at: Int, text: String, importance: Importance, deadline: String? = nil) {
+func changeItem(atInd: Int, text: String, importance: Importance, deadline: String? = nil) {
     let newItem = TodoItem(text: text, deadline: deadline, importance: importance)
-    fileCache.toDoList[at] = newItem
+    fileCache.toDoList[atInd] = newItem
     fileCache.saveToFile(to: url)
 }
 
